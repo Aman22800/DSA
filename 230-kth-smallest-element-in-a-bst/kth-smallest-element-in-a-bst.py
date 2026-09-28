@@ -10,10 +10,12 @@ class Solution:
         curr=root
 
         while True:
+            # Go as far left as possible
             while curr:
-
+                
                 stack.append(curr)
                 curr=curr.left
+            # Get the smallest remaining node
             curr=stack.pop()
             k-=1
 
