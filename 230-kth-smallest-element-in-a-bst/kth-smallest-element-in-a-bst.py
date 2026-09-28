@@ -1,30 +1,26 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
-    def kthSmallest(self, root: TreeNode | None, k: int) -> int:
-        stack=[]
-        curr=root
+    def kthSmallest(self, root, k):
+        # Store the inorder traversal of the BST
+        arr = []
 
-        while True:
-            # Go as far left as possible
-            while curr:
-                
-                stack.append(curr)
-                curr=curr.left
-            # Get the smallest remaining node
-            curr=stack.pop()
-            k-=1
+        def inorder(node):
+            # Base case: if node doesn't exist, stop
+            if not node:
+                return
 
-            if k==0:
-                return curr.val
-            curr=curr.right
-        
+            # Visit the left subtree first
+            inorder(node.left)
 
-        
+            # Visit the current node
+            arr.append(node.val)
 
+            # Visit the right subtree
+            inorder(node.right)
 
-        
+        # Perform inorder traversal
+        # For a BST, this gives values in sorted order
+        inorder(root)
+
+        # Since arrays are 0-indexed,
+        # kth smallest element is at index k-1
+        return arr[k - 1]
