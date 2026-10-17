@@ -16,7 +16,7 @@ class Solution:
         right = len(nums) -1
 
         while left < right:
-            mid = left +(right-left)//2
+            mid = (left +right)//2
 
             if nums[mid] > nums[right]:
                 left = mid + 1
