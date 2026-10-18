@@ -1,14 +1,17 @@
 class Solution:
     def singleNumber(self, nums: list[int]) -> int:
-        for i in range(len(nums)):
-            found = False
+        ones = 0
+        twos = 0
 
-            for j in range(len(nums)):
-                if i != j and nums[i] == nums[j]:
-                    found = True
-                    break
+        for num in nums:
+            # Ensure it is not in twos and add to ones bucket
+            ones = (ones ^ num) & ~twos
 
-            if not found:
-                return nums[i]
-        
-        
+            # Add to twos if already in ones bucket,
+            # and remove from ones
+            twos = (twos ^ num) & ~ones
+
+            # If already in twos bucket, the third occurrence
+            # removes the bit from both ones and twos
+
+        return ones
