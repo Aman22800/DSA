@@ -13,7 +13,7 @@ class Solution:
                 bob=False
                 alice=True
                 c-=1
-            print(n,alice,bob)
+            #print(n,alice,bob)
         return alice
 
 
